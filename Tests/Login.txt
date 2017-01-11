@@ -1,0 +1,7 @@
+*** Settings ***
+Resource          Resource/PageKeywords/AdidasIndonesiaCommon.txt
+
+*** Test Cases ***
+test open web
+    Open Browser    ${BASE_URL}    ${ar_BROWSER}
+    [Teardown]    Close Browser

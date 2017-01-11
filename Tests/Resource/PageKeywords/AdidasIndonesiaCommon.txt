@@ -1,0 +1,5 @@
+*** Settings ***
+Resource          ../../../../aCommerceRobotBuffet/Common/Keywords/RedefindKeywords.txt
+Resource          ../../../../aCommerceRobotBuffet/Common/Keywords/RunOnFailKeywords.txt
+Resource          ../PageRepository/AdidasIndonesiaRepository.txt
+Resource          ../PageVariable/AdidasIndonesiaCommonVariable.txt
