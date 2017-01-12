@@ -9,8 +9,8 @@ Resource          ../../../../Config/LocalConfig.txt
 
 *** Keywords ***
 Search Product
-    Click Element    ${btnSearchProduct}
-    Input Text    ${home_search_textarea}    ${txtShoes}
+    Click Web Element    ${btnSearchProduct}
+    Input Web Text    ${home_search_textarea}    ${txtShoes}
     Press Enter
 
 Press Enter

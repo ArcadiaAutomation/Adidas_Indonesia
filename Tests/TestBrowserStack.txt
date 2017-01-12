@@ -15,5 +15,9 @@ Automate Browserstack
     [Teardown]    Close Browser
 
 Open url
+<<<<<<< HEAD
     Open Browser    url=https://shop.adidas.co.id    browser=iphone    remote_url=http://fangkaow1:zjeh4koFitf2P8YaBgBL@hub.browserstack.com/wd/hub    desired_capabilities=os:deviecs,os_version:6.0,browserstack.debug:true
+=======
+    Open Browser    url=https://www.hotmail.com:4000    browser=gc    remote_url=http://fangkaow1:zjeh4koFitf2P8YaBgBL@hub.browserstack.com/wd/hub    desired_capabilities=os:Windows,os_version:8,browserstack.debug:true
+>>>>>>> origin/master
     Capture Page Screenshot

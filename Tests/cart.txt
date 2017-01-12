@@ -9,25 +9,15 @@ User can view product item in cart
     Select First Product
     ${product_name_select}    ${product_price_select}    Verify Product Detail
     Select Product Second Color
-    Select Shoes Size    5
+    ${prodect_size}    ${product_type}    Select Shoes Size    5
     Add Product To Cart
     Verify Dialog Cart Detail
-    Click Element    ${btnViewCartDetail}
-    Wait Until Element Is Visible    ${product_name_in_cart_el}
-    ${product_name_in_cart}    Get Text    ${product_name_in_cart_el}
-    ${product_price_in_cart}    Get Text    ${product_price_in_cart_el}
-    ${product_size_in_cart}    Get Text    ${product_size_in_cart_el}
-    ${product_qty_in_cart}    Get Text    ${product_qty_in_cart_el}
-    Variable Should Exist    ${product_name_select}    ${product_name_in_cart}
-    Should be Equal    ${product_price_select}    ${product_price_in_cart}
-    Should be Equal    ${product_size_in_cart}    5 (UK)
-    Should be Equal    ${product_qty_in_cart}    1
-    ${product_subtotal_in_cart}    Get Text    ${subtotal_in_cart_el}
-    ${product_grandtotal_in_cart}    Get Text    ${grandtotal_in_cart_el}
-    Should be Equal    ${product_subtotal_in_cart}    ${product_price_in_cart}    ${product_grandtotal_in_cart}
-    [Teardown]    Close Browser
+    Select Cart Detail
+    Verify Product Item and Detail In Cart    ${product_name_select}    ${product_price_select}    ${prodect_size}    ${product_type}
+    [Teardown]    Keywords For Teardown
 
 *** Keywords ***
+<<<<<<< HEAD
 Remove product in cart
     Click Element    ${btnRemoveProductInCart}
     Search Product
@@ -37,6 +27,10 @@ Remove product in cart
 
 Press Enter
     Press Key    ${home_search_textarea}    \\13
+=======
+Remove Product In Cart
+    Click Web Element    ${btnRemoveProductInCart}
+>>>>>>> origin/master
 
 Add product to cart from product detail page
     Click Element    ${image_first_product_tiles}
@@ -72,9 +66,35 @@ Select Product Second Color
 Select Shoes Size
     [Arguments]    ${size}
     Select From List By Label    ${ddlSizeProductDetail}    ${size}
+    ${type}=    Get text    xpath=//*[@id="select-sizeoption"]/option[@selected]
+    Log    ${type}
+    [Return]    ${size}    ${type}
 
 Add Product To Cart
     Click Web Element    ${btnAddToCart}
 
 Verify Dialog Cart Detail
     Wait Until Element Is Visible    ${dialogCartDetail}
+
+Select Cart Detail
+    Click Web Element    ${btnViewCartDetail}
+
+Verify Product Item and Detail In Cart
+    [Arguments]    ${product_name_select}    ${product_price_select}    ${size}    ${type}
+    Wait Until Element Is Visible    ${product_name_in_cart_el}
+    ${product_name_in_cart}    Get Text    ${product_name_in_cart_el}
+    ${product_price_in_cart}    Get Text    ${product_price_in_cart_el}
+    ${product_size_in_cart}    Get Text    ${product_size_in_cart_el}
+    ${product_qty_in_cart}    Get Text    ${product_qty_in_cart_el}
+    Variable Should Exist    ${product_name_select}    ${product_name_in_cart}
+    Should be Equal    ${product_price_select}    ${product_price_in_cart}
+    Should be Equal    ${product_size_in_cart}    ${size} (${type})
+    Should be Equal    ${product_qty_in_cart}    1
+    ${product_subtotal_in_cart}    Get Text    ${subtotal_in_cart_el}
+    ${product_grandtotal_in_cart}    Get Text    ${grandtotal_in_cart_el}
+    Should be Equal    ${product_subtotal_in_cart}    ${product_price_in_cart}    ${product_grandtotal_in_cart}
+    Capture Page Screenshot
+
+Keywords For Teardown
+    Remove Product In Cart
+    Close Browser
