@@ -1,0 +1,31 @@
+*** Settings ***
+Resource          Resource/PageKeywords/AdidasIndonesiaCommon.txt
+Resource          ../../Config/LocalConfig.txt
+
+*** Test Cases ***
+User can checkout and payment by bank transfer payment method.
+    [Tags]    checkout    re-test
+    open browser    ${BASE_URL}    ${ar_BROWSER}
+    Search Product
+    Add Product First Tiles to Cart
+    Click Element    ${minicart_icon}
+    Wait Until Element Is Visible    ${checkout_button_in_cart}
+    Click Element    ${checkout_button_in_cart}
+    Login with email account
+    Wait Until Element Is Visible    ${review_and_pay_button_in_shipping_detail_page}
+    Click Element    ${review_and_pay_button_in_shipping_detail_page}
+    Wait Until Element Is Visible    ${bank_transfer_payment_method}
+    Click Element    ${bank_transfer_payment_method}
+    Wait Until Element Is Visible    ${continue_button_in_payment_method_page}
+    Click Element    ${continue_button_in_payment_method_page}
+    Wait Until Element Is Visible    ${other_bank_option_bank_transfer_payment_gateway}
+    Click Element    ${other_bank_option_bank_transfer_payment_gateway}
+    Wait Until Element Is Visible    ${see_account_number_button_bank_transfer_payment_gateway}
+    Click Element    ${see_account_number_button_bank_transfer_payment_gateway}
+    Wait Until Element Is Visible    ${complete_payment_at_atm_button_bank_transfer_payment_gateway}
+    Click Element    ${complete_payment_at_atm_button_bank_transfer_payment_gateway}
+    ${thank_you_text}    Get Text    ${thank_you_text_in_thank_you_page_el}
+    Should be Equal    ${thank_you_text}    Thank You !
+    ${order_no}    Get Text    ${order_no_in_thank_you_page_el}
+    Variable Should Exist    ${order_no}    ${prefix_order_no}
+    Length Should Be    ${order_no}    11
