@@ -3,3 +3,10 @@ Resource          ../../../../aCommerceRobotBuffet/Common/Keywords/RedefindKeywo
 Resource          ../../../../aCommerceRobotBuffet/Common/Keywords/RunOnFailKeywords.txt
 Resource          ../PageRepository/AdidasIndonesiaRepository.txt
 Resource          ../PageVariable/AdidasIndonesiaCommonVariable.txt
+
+*** Keywords ***
+Search Product
+    Click Web Element    //*[@id="top"]/body/header/div[1]/div/div[4]/div[2]/div
+    Click Element    //*[@id="top"]/body/header/div[1]/div/div[4]/div[2]/div
+    Input Text    ${home_search_textarea}    ${text_search}
+    Press Enter

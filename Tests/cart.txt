@@ -41,11 +41,6 @@ User can view product item in cart.
 Remove product in cart
     Click Element    ${remove_product_item_button_in_cart}
 
-Search Product
-    Click Element    //*[@id="top"]/body/header/div[1]/div/div[4]/div[2]/div
-    Input Text    ${home_search_textarea}    ${text_search}
-    Press Enter
-
 Press Enter
     Press Key    ${home_search_textarea}    \\13
 
