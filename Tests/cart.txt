@@ -1,0 +1,67 @@
+*** Settings ***
+Resource          Resource/PageKeywords/AdidasIndonesiaCommon.txt
+
+*** Variables ***
+${product_name_in_cart_el}    xpath=/html/body/div[5]/div[1]/div/div[1]/div/form/fieldset/table/tbody/tr/td[2]/h2
+${product_price_in_cart_el}    xpath=/html/body/div[5]/div[1]/div/div[1]/div/form/fieldset/table/tbody/tr/td[2]/div[1]/span/span
+${product_size_in_cart_el}    xpath=/html/body/div[5]/div[1]/div/div[1]/div/form/fieldset/table/tbody/tr/td[2]/table/tbody/tr[3]/td[2]
+${product_qty_in_cart_el}    xpath=/html/body/div[5]/div[1]/div/div[1]/div/form/fieldset/table/tbody/tr/td[4]/div/ul
+${subtotal_in_cart_el}    xpath=/html/body/div[5]/div[1]/div/div[2]/div[3]/table/tbody/tr[1]/td[2]/span
+${grandtotal_in_cart_el}    xpath=/html/body/div[5]/div[1]/div/div[2]/div[3]/table/tfoot/tr/td[2]/strong/span
+${product_price_select_in_cart_el}    xpath=/html/body/div[5]/div[1]/div/div[1]/div/form/fieldset/table/tbody/tr/td[5]/span/span
+${product_qty_select_in_cart_el}    xpath=/html/body/div[5]/div[1]/div/div[1]/div/form/fieldset/table/tbody/tr/td[4]/div/ul/li[2]/span
+${product_qty_dropdown_in_cart_el}    xpath=/html/body/div[5]/div[1]/div/div[1]/div/form/fieldset/table/tbody/tr/td[4]/div/ul
+${home_search_textarea}    xpath=/html/body/header/div[2]/div/form/div[1]/input
+${text_search}    shoes
+
+*** Test Cases ***
+User can view product item in cart.
+    [Tags]    cart
+    open browser    ${BASE_URL}    ${ar_BROWSER}
+    Search Product
+    sleep    5s
+    ${product_name_select}    ${product_price_select}    Add product to cart from product detail page
+    Click Element    ${view_bag_button_in_popup_cart_detail}
+    Wait Until Element Is Visible    ${product_name_in_cart_el}
+    ${product_name_in_cart}    Get Text    ${product_name_in_cart_el}
+    ${product_price_in_cart}    Get Text    ${product_price_in_cart_el}
+    ${product_size_in_cart}    Get Text    ${product_size_in_cart_el}
+    ${product_qty_in_cart}    Get Text    ${product_qty_in_cart_el}
+    Variable Should Exist    ${product_name_select}    ${product_name_in_cart}
+    Should be Equal    ${product_price_select}    ${product_price_in_cart}
+    Variable Should Exist    ${size_value_dropdown_select_in_product_tiles}    ${product_size_in_cart}
+    Should be Equal    ${product_qty_in_cart}    1
+    ${product_subtotal_in_cart}    Get Text    ${subtotal_in_cart_el}
+    ${product_grandtotal_in_cart}    Get Text    ${grandtotal_in_cart_el}
+    Should be Equal    ${product_subtotal_in_cart}    ${product_price_in_cart}    ${product_grandtotal_in_cart}
+    close browser
+    [Teardown]    Remove product in cart
+
+*** Keywords ***
+Remove product in cart
+    Click Element    ${remove_product_item_button_in_cart}
+
+Search Product
+    Click Element    //*[@id="top"]/body/header/div[1]/div/div[4]/div[2]/div
+    Input Text    ${home_search_textarea}    ${text_search}
+    Press Enter
+
+Press Enter
+    Press Key    ${home_search_textarea}    \\13
+
+Add product to cart from product detail page
+    Click Element    ${image_first_product_tiles}
+    Sleep    10s
+    Wait Until Element Is Visible    ${header_product_detail_view}
+    Stop Page Load
+    ${product_name_select}    Get Text    ${header_product_detail_view}
+    ${product_price_select}    Get Text    ${product_price_in_product_detail_page_el}
+    Click Element    ${second_color_in_product_detail}
+    ${product_image_link_select}    Get Element Attribute    ${product_image_link_in_product_detail_el}
+    Select From List By Label    ${size_dropdown_in_product_detail}    ${size_value_dropdown_select_in_product_tiles}
+    Click Element    ${add_to_bag_button_in_product_detail}
+    Wait Until Element Is Visible    ${popup_cart_detail_el}
+    [Return]    ${product_name_select}    ${product_price_select}
+
+Stop Page Load
+    Execute Javascript    return window.stop();
