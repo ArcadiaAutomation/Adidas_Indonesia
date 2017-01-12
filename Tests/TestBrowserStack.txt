@@ -1,0 +1,10 @@
+*** Settings ***
+Library           Selenium2Library
+
+*** Test Cases ***
+Automate Browserstack
+    Open Browser    url=https://shop.adidas.co.id    browser=Android    remote_url=http://fangkaow1:zjeh4koFitf2P8YaBgBL@hub.browserstack.com/wd/hub    desired_capabilities=os:devices,os_version:5.0,browserstack.debug:true
+    Log    Click search button
+    Click Element    xpath=//*[@id="top"]/body/header/div[1]/div/div[4]/div[2]/div
+    Capture Page Screenshot
+    [Teardown]    Close Browser
