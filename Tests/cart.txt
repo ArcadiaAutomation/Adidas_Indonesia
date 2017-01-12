@@ -27,9 +27,6 @@ Remove product in cart
 Press Enter
     Press Key    ${home_search_textarea}    \\13
 
-Remove Product In Cart
-    Click Web Element    ${btnRemoveProductInCart}
-
 Add product to cart from product detail page
     Click Element    ${image_first_product_tiles}
     Sleep    10s
