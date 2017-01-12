@@ -30,13 +30,10 @@ User can view product item in cart
 *** Keywords ***
 Remove product in cart
     Click Element    ${btnRemoveProductInCart}
-<<<<<<< HEAD
     Search Product
     Click Element    ${btnSearchProduct}
     Input Text    ${home_search_textarea}    ${text_search}
     Press Enter
-=======
->>>>>>> origin/master
 
 Press Enter
     Press Key    ${home_search_textarea}    \\13
