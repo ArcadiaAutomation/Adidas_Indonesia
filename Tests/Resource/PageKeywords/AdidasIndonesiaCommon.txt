@@ -3,5 +3,18 @@ Resource          ../../../../ArcadiaAtlasRobot/Common/Keywords/RedefindKeywords
 Resource          ../../../../ArcadiaAtlasRobot/Common/Keywords/RunOnFailKeywords.txt
 Resource          ../PageRepository/AdidasIndonesiaRepository.txt
 Resource          ../PageVariable/AdidasIndonesiaCommonVariable.txt
+Resource          ../PageRepository/CartRepository.txt
+Resource          ../Localized/${ar_LANG}/CartLocalized.txt
+Resource          ../../../../Config/LocalConfig.txt
 
 *** Keywords ***
+<<<<<<< HEAD
+Search Product
+    Click Element    ${btnSearchProduct}
+    Input Text    ${home_search_textarea}    ${txtShoes}
+    Press Enter
+
+Press Enter
+    Press Key    ${home_search_textarea}    \\13
+=======
+>>>>>>> origin/master
