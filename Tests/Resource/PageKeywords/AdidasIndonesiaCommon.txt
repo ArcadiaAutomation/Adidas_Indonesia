@@ -8,13 +8,10 @@ Resource          ../Localized/${ar_LANG}/CartLocalized.txt
 Resource          ../../../../Config/LocalConfig.txt
 
 *** Keywords ***
-<<<<<<< HEAD
 Search Product
-    Click Element    ${btnSearchProduct}
-    Input Text    ${home_search_textarea}    ${txtShoes}
+    Click Web Element    ${btnSearchProduct}
+    Input Web Text    ${home_search_textarea}    ${txtShoes}
     Press Enter
 
 Press Enter
     Press Key    ${home_search_textarea}    \\13
-=======
->>>>>>> origin/master
