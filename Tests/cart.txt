@@ -17,7 +17,6 @@ User can view product item in cart
     [Teardown]    Keywords For Teardown
 
 *** Keywords ***
-<<<<<<< HEAD
 Remove product in cart
     Click Element    ${btnRemoveProductInCart}
     Search Product
@@ -27,10 +26,9 @@ Remove product in cart
 
 Press Enter
     Press Key    ${home_search_textarea}    \\13
-=======
+
 Remove Product In Cart
     Click Web Element    ${btnRemoveProductInCart}
->>>>>>> origin/master
 
 Add product to cart from product detail page
     Click Element    ${image_first_product_tiles}
