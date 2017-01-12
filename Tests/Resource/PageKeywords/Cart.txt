@@ -1,0 +1,3 @@
+*** Settings ***
+Resource          ../PageRepository/CartRepository.txt
+Resource          AdidasIndonesiaCommon.txt

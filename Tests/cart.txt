@@ -1,23 +1,10 @@
 *** Settings ***
-Resource          Resource/PageKeywords/AdidasIndonesiaCommon.txt
-
-*** Variables ***
-${product_name_in_cart_el}    xpath=/html/body/div[5]/div[1]/div/div[1]/div/form/fieldset/table/tbody/tr/td[2]/h2
-${product_price_in_cart_el}    xpath=/html/body/div[5]/div[1]/div/div[1]/div/form/fieldset/table/tbody/tr/td[2]/div[1]/span/span
-${product_size_in_cart_el}    xpath=/html/body/div[5]/div[1]/div/div[1]/div/form/fieldset/table/tbody/tr/td[2]/table/tbody/tr[3]/td[2]
-${product_qty_in_cart_el}    xpath=/html/body/div[5]/div[1]/div/div[1]/div/form/fieldset/table/tbody/tr/td[4]/div/ul
-${subtotal_in_cart_el}    xpath=/html/body/div[5]/div[1]/div/div[2]/div[3]/table/tbody/tr[1]/td[2]/span
-${grandtotal_in_cart_el}    xpath=/html/body/div[5]/div[1]/div/div[2]/div[3]/table/tfoot/tr/td[2]/strong/span
-${product_price_select_in_cart_el}    xpath=/html/body/div[5]/div[1]/div/div[1]/div/form/fieldset/table/tbody/tr/td[5]/span/span
-${product_qty_select_in_cart_el}    xpath=/html/body/div[5]/div[1]/div/div[1]/div/form/fieldset/table/tbody/tr/td[4]/div/ul/li[2]/span
-${product_qty_dropdown_in_cart_el}    xpath=/html/body/div[5]/div[1]/div/div[1]/div/form/fieldset/table/tbody/tr/td[4]/div/ul
-${home_search_textarea}    xpath=/html/body/header/div[2]/div/form/div[1]/input
-${text_search}    shoes
+Resource          Resource/PageKeywords/Cart.txt
 
 *** Test Cases ***
 User can view product item in cart.
     [Tags]    cart
-    open browser    ${BASE_URL}    ${ar_BROWSER}
+    Open Browser    ${BASE_URL}    ${ar_BROWSER}
     Search Product
     sleep    5s
     ${product_name_select}    ${product_price_select}    Add product to cart from product detail page
@@ -34,15 +21,14 @@ User can view product item in cart.
     ${product_subtotal_in_cart}    Get Text    ${subtotal_in_cart_el}
     ${product_grandtotal_in_cart}    Get Text    ${grandtotal_in_cart_el}
     Should be Equal    ${product_subtotal_in_cart}    ${product_price_in_cart}    ${product_grandtotal_in_cart}
-    close browser
-    [Teardown]    Remove product in cart
+    [Teardown]    Remove product in cart    Close Browser
 
 *** Keywords ***
 Remove product in cart
-    Click Element    ${remove_product_item_button_in_cart}
+    Click Element    ${btnRemoveProductInCart}
 
 Search Product
-    Click Element    //*[@id="top"]/body/header/div[1]/div/div[4]/div[2]/div
+    Click Element    ${btnSearchProduct}
     Input Text    ${home_search_textarea}    ${text_search}
     Press Enter
 
