@@ -3,10 +3,10 @@ Resource          Resource/PageKeywords/Cart.txt
 
 *** Test Cases ***
 User can view product item in cart
-    Open Browser    ${BASE_URL}    ${ar_BROWSER}
+    Open Browser    ${BASE_URL}    ${ar_Browser}
     Maximize Browser Window
     Search Product
-    Select First Product
+    Select Product
     ${product_name_select}    ${product_price_select}    Verify Product Detail
     Select Product Second Color
     ${prodect_size}    ${product_type}    Select Shoes Size    5
@@ -17,9 +17,9 @@ User can view product item in cart
     [Teardown]    Keywords For Teardown
 
 User can view product item in cart [BrowserStack]
-    Open Browser    ${BASE_URL}    ${ar_BROWSER}    remote_url=http://fangkaow1:zjeh4koFitf2P8YaBgBL@hub.browserstack.com/wd/hub    desired_capabilities=os:devices,os_version:5.0,browserstack.debug:true
+    Open Browser    ${BASE_URL}    ${ar_BROWSER}    remote_url=http://fangkaow1:zjeh4koFitf2P8YaBgBL@hub.browserstack.com/wd/hub    desired_capabilities=os:Windows,os_version:10,browserstack.debug:true
     Search Product
-    Select First Product
+    Select Product
     ${product_name_select}    ${product_price_select}    Verify Product Detail
     Select Product Second Color
     ${prodect_size}    ${product_type}    Select Shoes Size    5
@@ -31,10 +31,7 @@ User can view product item in cart [BrowserStack]
 
 *** Keywords ***
 Remove product in cart
-    Click Element    ${btnRemoveProductInCart}
-    Search Product
-    Click Element    ${btnSearchProduct}
-    Input Text    ${home_search_textarea}    ${text_search}
+    Click Web Element    ${btnRemoveProductInCart}
     Press Enter
 
 Press Enter
@@ -57,11 +54,11 @@ Add product to cart from product detail page
 Stop Page Load
     Execute Javascript    return window.stop();
 
-Select First Product
-    Click Web Element    ${imgFirstProduct}
+Select Product
+    Click Web Element    ${imgProduct}
 
 Verify Product Detail
-    Wait Until Element Is Visible    ${lblHeaderProduct}
+    Wait Web Until Page Contains Element    ${lblHeaderProduct}    10s
     Execute Javascript    return window.stop();
     ${product_name_select}    Get Text    ${lblHeaderProduct}
     ${product_price_select}    Get Text    ${lblProductPriceDetail}
@@ -79,7 +76,7 @@ Select Shoes Size
     [Return]    ${size}    ${type}
 
 Add Product To Cart
-    Click Web Element    ${btnAddToCart}
+    Click Element    ${btnAddToCart}
 
 Verify Dialog Cart Detail
     Wait Until Element Is Visible    ${dialogCartDetail}
@@ -89,7 +86,7 @@ Select Cart Detail
 
 Verify Product Item and Detail In Cart
     [Arguments]    ${product_name_select}    ${product_price_select}    ${size}    ${type}
-    Wait Until Element Is Visible    ${product_name_in_cart_el}
+    Wait Web Until Page Contains Element    ${product_name_in_cart_el}
     ${product_name_in_cart}    Get Text    ${product_name_in_cart_el}
     ${product_price_in_cart}    Get Text    ${product_price_in_cart_el}
     ${product_size_in_cart}    Get Text    ${product_size_in_cart_el}
@@ -104,5 +101,4 @@ Verify Product Item and Detail In Cart
     Capture Page Screenshot
 
 Keywords For Teardown
-    Remove Product In Cart
     Close Browser
