@@ -3,6 +3,7 @@ Resource          Resource/PageKeywords/Cart.txt
 
 *** Test Cases ***
 User can view product item in cart
+    [Tags]    web
     Open Browser    ${BASE_URL}    ${ar_Browser}
     Maximize Browser Window
     Search Product
@@ -17,6 +18,7 @@ User can view product item in cart
     [Teardown]    Keywords For Teardown
 
 User can view product item in cart [BrowserStack]
+    [Tags]    mobile
     Open Browser    ${BASE_URL}    ${ar_BROWSER}    remote_url=http://fangkaow1:zjeh4koFitf2P8YaBgBL@hub.browserstack.com/wd/hub    desired_capabilities=os:Windows,os_version:10,browserstack.debug:true
     Search Product
     Select Product
