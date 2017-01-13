@@ -1,0 +1,106 @@
+*** Settings ***
+Resource          Resource/PageKeywords/Cart.txt
+
+*** Test Cases ***
+User can view product item in cart
+    [Tags]    web
+    Open Browser    ${BASE_URL}    ${ar_Browser}
+    Maximize Browser Window
+    Search Product
+    Select Product
+    ${product_name_select}    ${product_price_select}    Verify Product Detail
+    Select Product Second Color
+    ${prodect_size}    ${product_type}    Select Shoes Size    5
+    Add Product To Cart
+    Verify Dialog Cart Detail
+    Select Cart Detail
+    Verify Product Item and Detail In Cart    ${product_name_select}    ${product_price_select}    ${prodect_size}    ${product_type}
+    [Teardown]    Keywords For Teardown
+
+User can view product item in cart [BrowserStack]
+    [Tags]    mobile
+    Open Browser    ${BASE_URL}    ${ar_BROWSER}    remote_url=http://fangkaow1:zjeh4koFitf2P8YaBgBL@hub.browserstack.com/wd/hub    desired_capabilities=os:Windows,os_version:10,browserstack.debug:true
+    Search Product
+    Select Product
+    ${product_name_select}    ${product_price_select}    Verify Product Detail
+    Select Product Second Color
+    ${prodect_size}    ${product_type}    Select Shoes Size    5
+    Add Product To Cart
+    Verify Dialog Cart Detail
+    Select Cart Detail
+    Verify Product Item and Detail In Cart    ${product_name_select}    ${product_price_select}    ${prodect_size}    ${product_type}
+    [Teardown]    Keywords For Teardown
+
+*** Keywords ***
+Remove product in cart
+    Click Web Element    ${btnRemoveProductInCart}
+    Press Enter
+
+Press Enter
+    Press Key    ${home_search_textarea}    \\13
+
+Add product to cart from product detail page
+    Click Element    ${image_first_product_tiles}
+    Sleep    10s
+    Wait Until Element Is Visible    ${header_product_detail_view}
+    Stop Page Load
+    ${product_name_select}    Get Text    ${header_product_detail_view}
+    ${product_price_select}    Get Text    ${product_price_in_product_detail_page_el}
+    Click Element    ${second_color_in_product_detail}
+    ${product_image_link_select}    Get Element Attribute    ${product_image_link_in_product_detail_el}
+    Select From List By Label    ${size_dropdown_in_product_detail}    ${size_value_dropdown_select_in_product_tiles}
+    Click Element    ${add_to_bag_button_in_product_detail}
+    Wait Until Element Is Visible    ${popup_cart_detail_el}
+    [Return]    ${product_name_select}    ${product_price_select}
+
+Stop Page Load
+    Execute Javascript    return window.stop();
+
+Select Product
+    Click Web Element    ${imgProduct}
+
+Verify Product Detail
+    Wait Web Until Page Contains Element    ${lblHeaderProduct}    10s
+    Execute Javascript    return window.stop();
+    ${product_name_select}    Get Text    ${lblHeaderProduct}
+    ${product_price_select}    Get Text    ${lblProductPriceDetail}
+    [Return]    ${product_name_select}    ${product_price_select}
+
+Select Product Second Color
+    Click Web Element    ${lblSecondColorInProductDetail}
+    ${product_image_link_select}    Get Element Attribute    ${imgLinkProductDetail}
+
+Select Shoes Size
+    [Arguments]    ${size}
+    Select From List By Label    ${ddlSizeProductDetail}    ${size}
+    ${type}=    Get text    xpath=//*[@id="select-sizeoption"]/option[@selected]
+    Log    ${type}
+    [Return]    ${size}    ${type}
+
+Add Product To Cart
+    Click Element    ${btnAddToCart}
+
+Verify Dialog Cart Detail
+    Wait Until Element Is Visible    ${dialogCartDetail}
+
+Select Cart Detail
+    Click Web Element    ${btnViewCartDetail}
+
+Verify Product Item and Detail In Cart
+    [Arguments]    ${product_name_select}    ${product_price_select}    ${size}    ${type}
+    Wait Web Until Page Contains Element    ${product_name_in_cart_el}
+    ${product_name_in_cart}    Get Text    ${product_name_in_cart_el}
+    ${product_price_in_cart}    Get Text    ${product_price_in_cart_el}
+    ${product_size_in_cart}    Get Text    ${product_size_in_cart_el}
+    ${product_qty_in_cart}    Get Text    ${product_qty_in_cart_el}
+    Variable Should Exist    ${product_name_select}    ${product_name_in_cart}
+    Should be Equal    ${product_price_select}    ${product_price_in_cart}
+    Should be Equal    ${product_size_in_cart}    ${size} (${type})
+    Should be Equal    ${product_qty_in_cart}    1
+    ${product_subtotal_in_cart}    Get Text    ${subtotal_in_cart_el}
+    ${product_grandtotal_in_cart}    Get Text    ${grandtotal_in_cart_el}
+    Should be Equal    ${product_subtotal_in_cart}    ${product_price_in_cart}    ${product_grandtotal_in_cart}
+    Capture Page Screenshot
+
+Keywords For Teardown
+    Close Browser
