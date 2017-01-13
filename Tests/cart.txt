@@ -16,6 +16,19 @@ User can view product item in cart
     Verify Product Item and Detail In Cart    ${product_name_select}    ${product_price_select}    ${prodect_size}    ${product_type}
     [Teardown]    Keywords For Teardown
 
+User can view product item in cart [BrowserStack]
+    Open Browser    ${BASE_URL}    ${ar_BROWSER}    remote_url=http://fangkaow1:zjeh4koFitf2P8YaBgBL@hub.browserstack.com/wd/hub    desired_capabilities=os:devices,os_version:5.0,browserstack.debug:true
+    Search Product
+    Select First Product
+    ${product_name_select}    ${product_price_select}    Verify Product Detail
+    Select Product Second Color
+    ${prodect_size}    ${product_type}    Select Shoes Size    5
+    Add Product To Cart
+    Verify Dialog Cart Detail
+    Select Cart Detail
+    Verify Product Item and Detail In Cart    ${product_name_select}    ${product_price_select}    ${prodect_size}    ${product_type}
+    [Teardown]    Keywords For Teardown
+
 *** Keywords ***
 Remove product in cart
     Click Element    ${btnRemoveProductInCart}

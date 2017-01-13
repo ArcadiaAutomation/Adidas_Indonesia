@@ -12,7 +12,7 @@ ${home_search_textarea}    xpath=/html/body/header/div[2]/div/form/div[1]/input
 ${btnRemoveProductInCart}    xpath=/html/body/div[5]/div[1]/div/div[1]/div/form/fieldset/table/tbody/tr/td[2]/div[2]/li[2]/a
 ${btnSearchProduct}    xpath=//*[@id="top"]/body/header/div[1]/div/div[4]/div[2]/div
 ${imgFirstProduct}    xpath=/html/body/div[5]/div/section/div/div[1]/div[2]/ul/li[1]/div/a
-${lblHeaderProduct}    xpath=/html/body/div[7]/div/div/form/div[3]/div[3]/div/div[4]/span
+${lblHeaderProduct}    xpath=//*[@id="product_addtocart_form"]/div[2]/div[2]/span
 ${lblProductPriceDetail}    xpath=/html/body/div[7]/div/div/form/div[3]/div[3]/div/div[5]/div[1]/span/span
 ${lblSecondColorInProductDetail}    xpath=/html/body/div[7]/div/div/form/div[3]/div[3]/div/div[8]/div[1]/div/ul/li[2]
 ${imgLinkProductDetail}    xpath=/html/body/div[7]/div/div/form/div[3]/div[1]/div/div[1]/div[2]/div[3]/div/ul/div/div/li[1]/a/img@alt
