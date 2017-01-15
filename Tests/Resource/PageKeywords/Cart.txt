@@ -1,4 +1,0 @@
-*** Settings ***
-Resource          ../PageRepository/CartRepository.txt
-Resource          AdidasIndonesiaCommon.txt
-Resource          ../Localized/${ar_LANG}/CartLocalized.txt
