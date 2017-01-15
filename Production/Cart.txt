@@ -4,8 +4,8 @@ Resource          Resource/PageKeywords/Cart.txt
 *** Test Cases ***
 User can view product item in cart
     [Tags]    web
-    Open Browser    ${BASE_URL}    ${ar_Browser}
-    Comment    Maximize Browser Window
+    Set Evironment Test On    ${ar_testType}
+    Maximize Browser Window
     Search Product
     Select Product
     ${product_name_select}    ${product_price_select}    Verify Product Detail

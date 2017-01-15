@@ -1,0 +1,19 @@
+*** Settings ***
+Resource          Resource/PageKeywords/Products.txt
+
+*** Test Cases ***
+User can refine gender
+    [Tags]    web
+    Set Evironment Test On    ${ar_testType}
+    Search Product
+    Select Gender    Men
+    Verify Gender Men Selected
+    [Teardown]    Close Browser
+
+*** Keywords ***
+Select Gender
+    [Arguments]    ${gender}
+    Click Element    ${checklistGender${gender}}
+
+Verify Gender Men Selected
+    Web Element Should Be Visible    ${lblSelectGenderMen}

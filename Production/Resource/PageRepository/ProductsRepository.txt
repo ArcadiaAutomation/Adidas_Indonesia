@@ -1,0 +1,3 @@
+*** Variables ***
+${checklistGenderMen}    xpath=//*[@id="narrow-by-list"]/div[1]/dd/ol/li[1]/a
+${lblSelectGenderMen}    xpath=//*[@id="block-layered-nav amshopby-filters-left"]/div[1]/ol
