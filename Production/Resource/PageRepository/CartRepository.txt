@@ -12,11 +12,12 @@ ${home_search_textarea}    xpath=/html/body/header/div[2]/div/form/div[1]/input
 ${btnRemoveProductInCart}    xpath=/html/body/div[5]/div[1]/div/div[1]/div/form/fieldset/table/tbody/tr/td[2]/div[2]/li[2]/a
 ${btnSearchProduct}    xpath=//*[@id="top"]/body/header/div[1]/div/div[4]/div[2]/div
 ${imgProduct}     xpath=//*[@id="product-parent-5040"]
-${lblHeaderProduct}    xpath=//*[@id='product_addtocart_form']/div[3]/div[3]/div/div[4]/span
-${lblProductPriceDetail}    xpath=/html/body/div[7]/div/div/form/div[3]/div[3]/div/div[5]/div[1]/span/span
-${lblSecondColorInProductDetail}    xpath=//*[@id='product-options-wrapper']/div[1]/div/ul/li[2]/a/img
-${imgLinkProductDetail}    xpath=/html/body/div[7]/div/div/form/div[3]/div[1]/div/div[1]/div[2]/div[3]/div/ul/div/div/li[1]/a/img@alt
-${ddlSizeProductDetail}    xpath=/html/body/div[7]/div/div/form/div[3]/div[3]/div/div[8]/div[2]/div[2]/dl/dd/select
-${btnAddToCart}    xpath=/html/body/div[7]/div/div/form/div[3]/div[3]/div/div[9]/div/div/div[2]/button
-${dialogCartDetail}    xpath=/html/body/div[9]/div/div[2]/div/div[1]/div
-${btnViewCartDetail}    xpath=/html/body/div[9]/div/div[2]/div/div[2]/div/div[4]/div[2]/a
+${lblHeaderProduct}    xpath=//*[@id='product_addtocart_form']/div[@class="row" or @class="product-shop-mobile"]//span[@class="h1"]
+${lblProductPriceDetail}    xpath=//*[@class="row" or @class="product-shop-mobile"]//span[@class="price"]    # //*[@class="row" or @class="product-shop-mobile"]//span[@class="price"]
+${lblSecondColorInProductDetail}    xpath=//*[@id="product-options-wrapper"]//div[@class="section-thumb-wrapper"]/ul/li[2]
+${imgLinkProductDetail}    xpath=//*[@id="product_addtocart_form"]//div[@class="product-image-gallery"]//li[1]/a/img@alt
+${ddlSizeProductDetail}    xpath=//*[@id="select-size"]
+${btnAddToCart}    xpath=//*[@id="ajax_loader"]
+${dialogCartDetail}    xpath=//*[@id="ajaxcart"]//div[@class="row"]//div[@class="product-details"]    # //*[@id="ajaxcart"]/div
+${btnViewCartDetail}    xpath=//*[@id="ajaxcart"]//a[@class="btn btn-lg btn-black has-arrow"]
+${btnCloseDialogCartDetail}    xpath=//*[@class="ajaxcart-close"]
