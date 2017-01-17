@@ -10,7 +10,7 @@ Resource          ../../../../Config/LocalConfig.txt
 *** Keywords ***
 Set Evironment Test On
     [Arguments]    ${ar_testType}
-    Run Keyword If    "${ar_testType}"=="web"    Open Browser    ${BASE_URL}    ${ar_BROWSER}
+    Run Keyword If    "${ar_testType}"=="web"    Open Browser And Maximize
     Run Keyword If    "${ar_testType}"=="device"    Open BrowserStack    ${Username}    ${AccessKey}    ${version}
 
 Open BrowserStack
@@ -28,3 +28,7 @@ Search Product
 
 Press Enter
     Press Key    ${home_search_textarea}    \\13
+
+Open Browser And Maximize
+    Open Browser    ${BASE_URL}    ${ar_BROWSER}
+    Maximize Browser Window

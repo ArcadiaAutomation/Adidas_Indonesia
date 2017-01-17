@@ -5,12 +5,20 @@ Resource          Resource/PageKeywords/AdidasIndonesiaCommon.txt
 *** Test Cases ***
 Automate Browserstack
     Set Evironment Test On    ${ar_testType}
-    Log    Click search button
-    Maximize Browser Window
-    Comment    Scroll Web To Element    xpath=//*[@id="top"]/body/footer/div[5]/div/div/div/div/address
-    Comment    Capture ScreenShot
-    Comment    Scroll Web To Element    xpath=//*[@id="top"]/body/div[5]/div[2]/div[1]/div/div/div[3]/div[1]/div/a/span
-    Comment    Capture ScreenShot
+    Comment    Mouse Over    xpath=//*[@id="top"]/body/header/div[1]/div/div[4]/div[1]/a/span/span
+    Comment    sleep    5
+    Comment    Log    Click search button
+    Comment    Mouse Over    xpath=//*[@id="top"]/body/div[5]/div[3]/div/div/div/div/div[2]/div/div[1]/span
+    Comment    sleep    5
+    Scroll Web To Element    xpath=//*[@id="top"]/body/footer/div[3]/div/div/div/div/address
+    sleep    2
+    Capture ScreenShot
+    Scroll Web To Element    xpath=//*[@id="top"]/body/div[4]/div/div/div[1]/ul/li[1]/a
+    sleep    2
+    Capture ScreenShot
+    Scroll Web To Element    xpath=//*[@id="top"]/body/div[7]/div/div/div/div/div[2]/div/div[1]/span
+    sleep    2
+    Capture ScreenShot
     Comment    E    //*[@id="top"]/body/div[5]/div[2]/div[1]/div/div/div[4]/img
     Comment    \    //*[@id="top"]/body/footer/div[5]/div/div/div/div/address
     Comment    ${element}    Set Variable    driver.find_element_by_xpath    (//*[@id="top"]/body/footer/div[5]/div/div/div/div/address)
@@ -27,13 +35,13 @@ Automate Browserstack
     Comment    Execute JavaScript    window.scrollRight(0, ${element})
     Comment    sleep    5
     Comment    Execute JavaScript    window.scrollBy(//*[@id="top"]/body/div[5]/div[2]/div[1]/div/div/div[4]/img, //*[@id="top"]/body/footer/div[5]/div/div/div/div/address)
-    Click Element    xpath=//*[@id="top"]/body/header/div[1]/div/div[4]/div[2]/div
-    Input Text    xpath=/html/body/header/div[2]/div/form/div[1]/input    Shoes
-    Press Key    xpath=/html/body/header/div[2]/div/form/div[1]/input    \\13
-    Wait Until Element Is Visible    xpath=/html/body/div[5]/div/section/div/div[1]
-    Click Element    xpath=/html/body/div[5]/div/section/div/div[1]
-    Execute JavaScript    window.scrollTo(0, 30)
-    Capture Page Screenshot
+    Comment    Click Element    xpath=//*[@id="top"]/body/header/div[1]/div/div[4]/div[2]/div
+    Comment    Input Text    xpath=/html/body/header/div[2]/div/form/div[1]/input    Shoes
+    Comment    Press Key    xpath=/html/body/header/div[2]/div/form/div[1]/input    \\13
+    Comment    Wait Until Element Is Visible    xpath=/html/body/div[5]/div/section/div/div[1]
+    Comment    Click Element    xpath=/html/body/div[5]/div/section/div/div[1]
+    Comment    Execute JavaScript    window.scrollTo(0, 30)
+    Comment    Capture Page Screenshot
     [Teardown]    Keywords For Teardown
 
 Open url
