@@ -1,0 +1,12 @@
+*** Settings ***
+Resource          ../PageRepository/ShopByPageRepository.txt
+Resource          AdidasIndonesiaCommon.txt
+Resource          ../Localized/${ar_LANG}/ShopByPageLocalized.txt
+
+*** Keywords ***
+Find Count Product (x)
+    [Arguments]    ${shopbypage_productshortcut_level2_products_count}
+    ${val_count_top}    Get Text    ${shopbypage_productshortcut_level2_products_count}
+    ${val_count_top}    Replace String    ${val_count_top}    products    ${EMPTY}
+    ${val_count_top}    Replace String    ${val_count_top}    ${SPACE}    ${EMPTY}
+    [Return]    ${val_count_top}

@@ -1,0 +1,8 @@
+*** Variables ***
+${menuBar}        xpath=//*[@id="top"]/body/header/div[1]/div/div[3]/nav
+${mnu_Men}        xpath=//*[@id="top"]/body/header/div[1]/div/div[3]/nav/ul/li[2]/a/div[2]/span
+${mnu_Women}      xpath=//*[@id="top"]/body/header/div[1]/div/div[3]/nav/ul/li[3]/a/div[2]/span
+${mnu_Kids}       xpath=//*[@id="top"]/body/header/div[1]/div/div[3]/nav/ul/li[4]/a/div[2]/span
+${mnu_Sports}     xpath=//*[@id="top"]/body/header/div[1]/div/div[3]/nav/ul/li[5]/a/div[2]/span
+${mnu_Brands}     xpath=//*[@id="top"]/body/header/div[1]/div/div[3]/nav/ul/li[6]/a/div[2]/span
+${subMnu_Originals}    xpath=//*[@id="top"]/body/header/div[1]/div/div[3]/nav/ul/li[2]/div[2]/div/div/ul/li[1]/ul/li[2]/a/span

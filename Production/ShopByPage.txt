@@ -1,0 +1,43 @@
+*** Settings ***
+Resource          Resource/PageKeywords/ShopByPage.txt
+
+*** Test Cases ***
+User can view product on product page
+    [Documentation]    **Test step**
+    ...    1. Menu -> label "original"
+    ...    2. check product detail in product tiles
+    ...
+    ...
+    ...    **Acceptance Criteria**
+    ...    - Test script should be reuse for another project
+    ...    - Test script need to support web and mobile
+    ...    - Test Script should be easy to implement for support another language
+    [Tags]    shop_by_page    production    success
+    Set Evironment Test On    ${ar_testType}
+    Select Orignals In MenuBar    Men
+    Check First Product Detail
+    [Teardown]    Keywords For Teardown
+
+User can sort price of product by Low to high sorter option
+
+*** Keywords ***
+Select Orignals In MenuBar
+    [Arguments]    ${arg}
+    Wait Web Until Page Element Visible    ${menuBar}
+    Mouse Over    ${mnu_${arg}}
+    Click Web Element    ${subMnu_Originals}
+
+Check First Product Detail
+    Wait Web Until Page Element Visible    ${firstProduct}
+    Scroll Web To Element    ${firstProduct}
+    Set Id Product
+    Wait Web Until Page Element Visible    ${img_Product}
+    Wait Web Until Page Element Visible    ${txtName_Product}
+    Web Element Text Should Be    ${txtType_Product}    ${txtMen} ${txtOriginals}
+    Web Element Regexp Matches    ${txtPrice_Product}    ${patternPrice}
+    Wait Web Until Page Element Visible    ${txtRating_Product}
+    ${status}    Run Keyword And Return Status    Wait Web Until Page Element Visible    ${txtColor_Product}
+    Mouse Over    ${firstProduct}
+    Run Keyword If    '${status}'=='True'    Wait Web Until Page Element Visible    ${img_ProductColor}
+    Wait Web Until Page Element Visible    ${btnAddToBag_Product}
+    Capture ScreenShot

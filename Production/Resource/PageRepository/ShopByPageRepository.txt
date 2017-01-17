@@ -1,0 +1,28 @@
+*** Settings ***
+Library           Selenium2Library
+Library           String
+
+*** Variables ***
+${firstProduct}    xpath=//*[@id="amshopby-page-container"]/div[2]/ul/li[1]//*[@class="item-wrap"]
+
+*** Keywords ***
+Set Id Product
+    ${id_product}    Get Element Attribute    ${firstProduct}@id
+    @{SplitID}    Split String    ${id_product}    -
+    ${productCollectionID}    Set Variable    product-collection-image-@{SplitID}[2]
+    ${img_Product}    Set Variable    xpath=//*[@id="${productCollectionID}"]
+    ${txtColor_Product}    Set Variable    xpath=//*[@id="${id_product}"]/div[2]
+    ${txtName_Product}    Set Variable    xpath=//*[@id="${id_product}"]/div[3]/h2
+    ${txtType_Product}    Set Variable    xpath=//*[@id="${id_product}"]/div[3]/div[1]
+    ${txtPrice_Product}    Set Variable    xpath=//*[@id="${id_product}"]/div[3]/div[2]/div[1]/div
+    ${txtRating_Product}    Set Variable    xpath=//*[@id="${id_product}"]/div[3]/div[2]/div[2]/div/div/div/div
+    ${img_ProductColor}    Set Variable    xpath=//*[@id="${id_product}"]/div[2]/div[1]/ul/div
+    ${btnAddToBag_Product}    Set Variable    xpath=//*[@id="${id_product}"]/div[3]/div[4]
+    Set Global Variable    ${img_Product}
+    Set Global Variable    ${txtColor_Product}
+    Set Global Variable    ${txtName_Product}
+    Set Global Variable    ${txtType_Product}
+    Set Global Variable    ${txtPrice_Product}
+    Set Global Variable    ${txtRating_Product}
+    Set Global Variable    ${img_ProductColor}
+    Set Global Variable    ${btnAddToBag_Product}

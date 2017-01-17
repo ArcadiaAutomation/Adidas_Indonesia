@@ -1,0 +1,4 @@
+*** Variables ***
+${patternPrice}    Rp\..*
+${txtOriginals}    Originals
+${txtMen}         Men
